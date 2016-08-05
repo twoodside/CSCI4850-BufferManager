@@ -1,0 +1,35 @@
+DESCRIPTION:
+This program tests the relative efficiencies of two different strategies for caching records from a database. The Least Recently Used method removes the record that was used longest ago when a new one enters the cache, and the Random method removes a random item from the cache.
+
+To do this, the program implements a simplified database to return the records from, and a simplified, SQL-esque query language to use to specify what to return from the database. 
+
+COMPILE:
+javac BufferManager.java
+
+INPUT:
+Three txt files each representing a database table:
+1) employee.txt
+2) department.txt
+3) employee-department.txt
+
+Each file should contain:
+A header with the comma-separated names of each attribute. These can't conflict with any of the other two database's headers.
+Any number of lines with the information for 1 record, each attribute separated by commas.
+I.e.:
+employee.eid,employee.name
+10,Dave
+11,David
+12,Daveriono
+
+A fourth file can be passed via command line to tell the program what queries to run, otherwise it will run queries from Standard In.
+The queries are similar to SQL queries, with the following statements possible:
+1) SELECT statements with the wildcard operator * as well as specific attributes
+2) FROM statements with optional JOINS
+3) Optional WHERE statements with =,<,>,<=,>= operations
+
+HOW TO RUN:
+java BufferManager <buffer size> <block size> <"random"|"LRU"> [file name to run queries from]
+
+Buffer size refers to the number of records that can be stored in the cache at one time.
+Block size refers to the number of records that are moved at one time. For all outward purposes, it has no impact on this simulation: that change was a necessary simplification so everyone in the class could finish it, even if they hadn't taken Operating Systems yet.
+random/LRU specifies the caching strategy.
